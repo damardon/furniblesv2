@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -141,9 +140,17 @@ const ProductDetail = () => {
                 </div>
               </div>
 
-              <p className="text-gray-700 text-lg leading-relaxed">
+              <p className="text-gray-700 text-lg leading-relaxed mb-2">
                 {product.description}
               </p>
+              <a
+                href="https://www.loom.com/share/cd1daddb8b3b474fba6a76631c13db00"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block font-semibold text-furnibles-orange underline hover:text-furnibles-orange-dark transition"
+              >
+                Ver demo aquí
+              </a>
             </div>
 
             {/* Price and Actions */}
