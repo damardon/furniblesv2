@@ -5,7 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/Navbar";
 import Comments from "@/components/Comments";
+import PurchaseModal from "@/components/PurchaseModal";
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { 
   Download, 
   Heart, 
@@ -21,6 +23,7 @@ import {
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
   
   // Mock product data - in real app this would come from API
   const product = {
@@ -28,13 +31,17 @@ const ProductDetail = () => {
     title: "Mesa de Centro Moderna Minimalista con Almacenamiento",
     description: "Una elegante mesa de centro con diseño minimalista que incluye compartimientos de almacenamiento ocultos. Perfecta para espacios modernos que buscan funcionalidad sin sacrificar el estilo.",
     category: "Sala de estar",
-    image: "/placeholder.svg",
-    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=800&q=80"
+    ],
     seller: {
       name: "Diseños Luna",
       rating: 4.9,
       sales: 1250,
-      avatar: "/placeholder.svg",
+      avatar: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80",
       slug: "disenos-luna"
     },
     rating: 4.9,
@@ -64,6 +71,10 @@ const ProductDetail = () => {
     ]
   };
 
+  const handlePurchaseClick = () => {
+    setIsPurchaseModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar userType="buyer" />
@@ -89,7 +100,7 @@ const ProductDetail = () => {
             </div>
             <div className="grid grid-cols-3 gap-2">
               {product.images.map((img, index) => (
-                <div key={index} className="aspect-square rounded-lg overflow-hidden bg-white border cursor-pointer hover:border-amber-300">
+                <div key={index} className="aspect-square rounded-lg overflow-hidden bg-white border cursor-pointer hover:border-furnibles-orange">
                   <img 
                     src={img} 
                     alt={`Vista ${index + 1}`}
@@ -104,7 +115,7 @@ const ProductDetail = () => {
           <div className="space-y-6">
             <div>
               <div className="flex items-center space-x-2 mb-2">
-                <Badge className="bg-amber-600">
+                <Badge className="bg-furnibles-orange text-white">
                   {product.category}
                 </Badge>
                 {product.featured && (
@@ -120,7 +131,7 @@ const ProductDetail = () => {
               
               <div className="flex items-center space-x-4 mb-4">
                 <div className="flex items-center">
-                  <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 mr-1" />
+                  <Star className="w-5 h-5 fill-furnibles-orange text-furnibles-orange mr-1" />
                   <span className="font-semibold">{product.rating}</span>
                   <span className="text-gray-600 ml-1">({product.reviews} reseñas)</span>
                 </div>
@@ -140,7 +151,7 @@ const ProductDetail = () => {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <span className="text-3xl font-bold text-amber-600">${product.price}.00</span>
+                    <span className="text-3xl font-bold text-furnibles-orange">${product.price}.00</span>
                     <p className="text-sm text-gray-600">Descarga instantánea</p>
                   </div>
                   <div className="flex space-x-2">
@@ -153,7 +164,10 @@ const ProductDetail = () => {
                   </div>
                 </div>
                 
-                <Button className="w-full bg-amber-600 hover:bg-amber-700 text-lg py-6">
+                <Button 
+                  onClick={handlePurchaseClick}
+                  className="w-full bg-furnibles-orange hover:bg-furnibles-orange-dark text-lg py-6"
+                >
                   <Download className="w-5 h-5 mr-2" />
                   Comprar y Descargar Ahora
                 </Button>
@@ -177,12 +191,12 @@ const ProductDetail = () => {
                   <div className="flex-1">
                     <Link 
                       to={`/seller/${product.seller.slug}`}
-                      className="font-semibold text-gray-900 hover:text-amber-600"
+                      className="font-semibold text-gray-900 hover:text-furnibles-orange"
                     >
                       {product.seller.name}
                     </Link>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      <Star className="w-3 h-3 fill-furnibles-orange text-furnibles-orange" />
                       <span>{product.seller.rating}</span>
                       <span>•</span>
                       <span>{product.seller.sales} ventas</span>
@@ -237,7 +251,7 @@ const ProductDetail = () => {
               <div className="space-y-3">
                 {product.features.map((feature, index) => (
                   <div key={index} className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-amber-600 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-furnibles-orange rounded-full mt-2"></div>
                     <span className="text-gray-700">{feature}</span>
                   </div>
                 ))}
@@ -261,6 +275,18 @@ const ProductDetail = () => {
         {/* Comments Section */}
         <Comments productId={product.id || "1"} />
       </div>
+
+      {/* Purchase Modal */}
+      <PurchaseModal
+        isOpen={isPurchaseModalOpen}
+        onClose={() => setIsPurchaseModalOpen(false)}
+        product={{
+          title: product.title,
+          price: product.price,
+          image: product.image,
+          seller: product.seller.name
+        }}
+      />
     </div>
   );
 };
