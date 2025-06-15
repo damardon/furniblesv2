@@ -258,14 +258,14 @@ const AdminDashboard = () => {
                       <span className="text-gray-600">Velocidad promedio</span>
                       <div className="flex items-center">
                         <CheckCircle className="w-4 h-4 text-green-600 mr-1" />
-                        <span className="text-green-600">< 2s</span>
+                        <span className="text-green-600">&lt; 2s</span>
                       </div>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-600">Errores 5xx</span>
                       <div className="flex items-center">
                         <CheckCircle className="w-4 h-4 text-green-600 mr-1" />
-                        <span className="text-green-600">< 0.1%</span>
+                        <span className="text-green-600">&lt; 0.1%</span>
                       </div>
                     </div>
                     <div className="flex justify-between items-center">
