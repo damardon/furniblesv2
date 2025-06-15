@@ -1,9 +1,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Home, User, ShoppingCart, Settings, MessageCircle } from "lucide-react";
+import { Home, User, ShoppingCart, Settings, MessageCircle, LogOut } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/hooks/useAuth";
 
 interface NavbarProps {
   userType?: 'buyer' | 'seller' | 'admin';
@@ -11,6 +12,11 @@ interface NavbarProps {
 
 const Navbar = ({ userType }: NavbarProps) => {
   const { t } = useLanguage();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <nav className="bg-white border-b border-furnibles-gray-200 px-6 py-4 shadow-sm">
@@ -25,7 +31,8 @@ const Navbar = ({ userType }: NavbarProps) => {
         </Link>
         
         <div className="flex items-center space-x-4">
-          {userType === 'buyer' && (
+          {/* Si el usuario está autenticado, mostrar navegación específica por rol */}
+          {user && userType === 'buyer' && (
             <>
               <Link to="/buyer">
                 <Button variant="ghost" size="sm" className="text-furnibles-gray-700 hover:text-furnibles-gray-900 hover:bg-furnibles-gray-100">
@@ -40,7 +47,7 @@ const Navbar = ({ userType }: NavbarProps) => {
             </>
           )}
           
-          {userType === 'seller' && (
+          {user && userType === 'seller' && (
             <>
               <Link to="/seller">
                 <Button variant="ghost" size="sm" className="text-furnibles-gray-700 hover:text-furnibles-gray-900 hover:bg-furnibles-gray-100">
@@ -55,7 +62,7 @@ const Navbar = ({ userType }: NavbarProps) => {
             </>
           )}
           
-          {userType === 'admin' && (
+          {user && userType === 'admin' && (
             <Link to="/admin">
               <Button variant="ghost" size="sm" className="text-furnibles-gray-700 hover:text-furnibles-gray-900 hover:bg-furnibles-gray-100">
                 <Settings className="w-4 h-4 mr-2" />
@@ -64,11 +71,17 @@ const Navbar = ({ userType }: NavbarProps) => {
             </Link>
           )}
           
-          {!userType && (
+          {/* Si el usuario NO está autenticado, mostrar opciones de login/registro */}
+          {!user && (
             <>
               <Link to="/buyer">
                 <Button variant="ghost" size="sm" className="text-furnibles-gray-700 hover:text-furnibles-gray-900 hover:bg-furnibles-gray-100">
                   {t('nav.buyPlans')}
+                </Button>
+              </Link>
+              <Link to="/auth">
+                <Button variant="outline" size="sm" className="border-furnibles-gray-300 text-furnibles-gray-700 hover:bg-furnibles-gray-50">
+                  Iniciar Sesión
                 </Button>
               </Link>
               <Link to="/seller">
@@ -77,6 +90,19 @@ const Navbar = ({ userType }: NavbarProps) => {
                 </Button>
               </Link>
             </>
+          )}
+          
+          {/* Si el usuario está autenticado, mostrar botón de logout */}
+          {user && (
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleSignOut}
+              className="border-furnibles-gray-300 text-furnibles-gray-700 hover:bg-furnibles-gray-50"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Cerrar Sesión
+            </Button>
           )}
           
           <Link to="/help">

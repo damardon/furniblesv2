@@ -29,11 +29,13 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/auth" element={<Auth />} />
-              <Route path="/" element={
-                <ProtectedRoute>
-                  <Index />
-                </ProtectedRoute>
-              } />
+              {/* Public routes - no authentication required */}
+              <Route path="/" element={<Index />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/seller/:sellerId" element={<SellerProfile />} />
+              <Route path="/help" element={<Help />} />
+              
+              {/* Protected routes - authentication required */}
               <Route path="/buyer" element={
                 <ProtectedRoute>
                   <BuyerDashboard />
@@ -47,21 +49,6 @@ const App = () => (
               <Route path="/admin" element={
                 <ProtectedRoute>
                   <AdminDashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/product/:id" element={
-                <ProtectedRoute>
-                  <ProductDetail />
-                </ProtectedRoute>
-              } />
-              <Route path="/seller/:sellerId" element={
-                <ProtectedRoute>
-                  <SellerProfile />
-                </ProtectedRoute>
-              } />
-              <Route path="/help" element={
-                <ProtectedRoute>
-                  <Help />
                 </ProtectedRoute>
               } />
               <Route path="*" element={<NotFound />} />
