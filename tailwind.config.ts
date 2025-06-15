@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,29 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Furnibles brand colors
+				'furnibles-orange': {
+					DEFAULT: 'hsl(var(--furnibles-orange))',
+					light: 'hsl(var(--furnibles-orange-light))',
+					dark: 'hsl(var(--furnibles-orange-dark))'
+				},
+				'furnibles-gray': {
+					50: 'hsl(var(--furnibles-gray-50))',
+					100: 'hsl(var(--furnibles-gray-100))',
+					200: 'hsl(var(--furnibles-gray-200))',
+					300: 'hsl(var(--furnibles-gray-300))',
+					400: 'hsl(var(--furnibles-gray-400))',
+					500: 'hsl(var(--furnibles-gray-500))',
+					600: 'hsl(var(--furnibles-gray-600))',
+					700: 'hsl(var(--furnibles-gray-700))',
+					800: 'hsl(var(--furnibles-gray-800))',
+					900: 'hsl(var(--furnibles-gray-900))'
 				}
+			},
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
+				sans: ['Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

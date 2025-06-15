@@ -68,36 +68,36 @@ const SellerProfile = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-furnibles-gray-50">
       <Navbar userType="buyer" />
       
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Breadcrumb */}
         <div className="flex items-center space-x-2 mb-6">
-          <Link to="/buyer" className="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
+          <Link to="/buyer" className="flex items-center text-furnibles-gray-600 hover:text-furnibles-gray-800 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-1" />
             Volver al marketplace
           </Link>
         </div>
 
         {/* Seller Header */}
-        <Card className="mb-8 border-gray-200">
-          <div className="h-32 bg-gradient-to-r from-gray-700 to-gray-800 rounded-t-lg"></div>
+        <Card className="mb-8 border-furnibles-gray-200">
+          <div className="h-32 bg-gradient-to-r from-furnibles-orange to-furnibles-orange-light rounded-t-lg"></div>
           <CardContent className="p-6 -mt-16 relative">
             <div className="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-x-6">
               <img 
                 src={seller.avatar} 
                 alt={seller.name}
-                className="w-24 h-24 rounded-full border-4 border-white bg-gray-200"
+                className="w-24 h-24 rounded-full border-4 border-white bg-furnibles-gray-200"
               />
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-2">
-                  <h1 className="text-2xl font-bold text-gray-900">{seller.name}</h1>
-                  <Badge className="bg-gray-800 text-white hover:bg-gray-700">Verificado</Badge>
+                  <h1 className="text-2xl font-bold text-furnibles-gray-900">{seller.name}</h1>
+                  <Badge className="bg-furnibles-orange text-white hover:bg-furnibles-orange-dark">Verificado</Badge>
                 </div>
-                <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
+                <div className="flex items-center space-x-4 text-sm text-furnibles-gray-600 mb-2">
                   <div className="flex items-center">
-                    <Star className="w-4 h-4 fill-gray-400 text-gray-400 mr-1" />
+                    <Star className="w-4 h-4 fill-furnibles-orange text-furnibles-orange mr-1" />
                     <span className="font-semibold">{seller.rating}</span>
                     <span className="ml-1">({seller.reviews} reseñas)</span>
                   </div>
@@ -110,16 +110,16 @@ const SellerProfile = () => {
                     <span>Miembro desde {seller.joinedDate}</span>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">{seller.description}</p>
+                <p className="text-furnibles-gray-700 mb-4">{seller.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {seller.specialties.map((specialty, index) => (
-                    <Badge key={index} variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    <Badge key={index} variant="secondary" className="bg-furnibles-gray-100 text-furnibles-gray-700 hover:bg-furnibles-gray-200">
                       {specialty}
                     </Badge>
                   ))}
                 </div>
               </div>
-              <Button className="bg-gray-800 hover:bg-gray-700 text-white">
+              <Button className="bg-furnibles-orange hover:bg-furnibles-orange-dark text-white">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Contactar
               </Button>
@@ -132,7 +132,7 @@ const SellerProfile = () => {
           <div className="lg:col-span-2">
             {/* Products */}
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl font-bold text-furnibles-gray-900 mb-4">
                 Planos de {seller.name} ({sellerProducts.length})
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -146,36 +146,36 @@ const SellerProfile = () => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Stats */}
-            <Card className="border-gray-200">
+            <Card className="border-furnibles-gray-200">
               <CardHeader>
-                <h3 className="font-semibold text-gray-900">Estadísticas</h3>
+                <h3 className="font-semibold text-furnibles-gray-900">Estadísticas</h3>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Total de ventas:</span>
-                  <span className="font-semibold text-gray-900">{seller.sales}</span>
+                  <span className="text-furnibles-gray-600">Total de ventas:</span>
+                  <span className="font-semibold text-furnibles-gray-900">{seller.sales}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Planos activos:</span>
-                  <span className="font-semibold text-gray-900">{sellerProducts.length}</span>
+                  <span className="text-furnibles-gray-600">Planos activos:</span>
+                  <span className="font-semibold text-furnibles-gray-900">{sellerProducts.length}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Calificación promedio:</span>
-                  <span className="font-semibold text-gray-900">{seller.rating}/5.0</span>
+                  <span className="text-furnibles-gray-600">Calificación promedio:</span>
+                  <span className="font-semibold text-furnibles-gray-900">{seller.rating}/5.0</span>
                 </div>
               </CardContent>
             </Card>
 
             {/* Achievements */}
-            <Card className="border-gray-200">
+            <Card className="border-furnibles-gray-200">
               <CardHeader>
-                <h3 className="font-semibold text-gray-900">Logros</h3>
+                <h3 className="font-semibold text-furnibles-gray-900">Logros</h3>
               </CardHeader>
               <CardContent className="space-y-3">
                 {seller.achievements.map((achievement, index) => (
                   <div key={index} className="flex items-center space-x-2">
-                    <Award className="w-4 h-4 text-gray-600" />
-                    <span className="text-sm text-gray-700">{achievement}</span>
+                    <Award className="w-4 h-4 text-furnibles-orange" />
+                    <span className="text-sm text-furnibles-gray-700">{achievement}</span>
                   </div>
                 ))}
               </CardContent>
