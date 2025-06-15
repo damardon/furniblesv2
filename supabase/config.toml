@@ -1,1 +1,17 @@
+
 project_id = "fbopzdisomurujaddqpa"
+
+[functions.auth-service]
+verify_jwt = false
+
+[functions.profile-service]
+verify_jwt = true
+
+[functions.product-service]
+verify_jwt = false
+
+[functions.order-service]
+verify_jwt = true
+
+[functions.review-service]
+verify_jwt = false
