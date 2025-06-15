@@ -74,15 +74,15 @@ const SellerProfile = () => {
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Breadcrumb */}
         <div className="flex items-center space-x-2 mb-6">
-          <Link to="/buyer" className="flex items-center text-gray-600 hover:text-gray-900">
+          <Link to="/buyer" className="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-1" />
             Volver al marketplace
           </Link>
         </div>
 
         {/* Seller Header */}
-        <Card className="mb-8">
-          <div className="h-32 bg-gradient-to-r from-amber-500 to-amber-600 rounded-t-lg"></div>
+        <Card className="mb-8 border-gray-200">
+          <div className="h-32 bg-gradient-to-r from-gray-700 to-gray-800 rounded-t-lg"></div>
           <CardContent className="p-6 -mt-16 relative">
             <div className="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-x-6">
               <img 
@@ -93,11 +93,11 @@ const SellerProfile = () => {
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-2">
                   <h1 className="text-2xl font-bold text-gray-900">{seller.name}</h1>
-                  <Badge className="bg-green-600">Verificado</Badge>
+                  <Badge className="bg-gray-800 text-white hover:bg-gray-700">Verificado</Badge>
                 </div>
                 <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
                   <div className="flex items-center">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
+                    <Star className="w-4 h-4 fill-gray-400 text-gray-400 mr-1" />
                     <span className="font-semibold">{seller.rating}</span>
                     <span className="ml-1">({seller.reviews} reseñas)</span>
                   </div>
@@ -113,13 +113,13 @@ const SellerProfile = () => {
                 <p className="text-gray-700 mb-4">{seller.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {seller.specialties.map((specialty, index) => (
-                    <Badge key={index} variant="secondary">
+                    <Badge key={index} variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-200">
                       {specialty}
                     </Badge>
                   ))}
                 </div>
               </div>
-              <Button>
+              <Button className="bg-gray-800 hover:bg-gray-700 text-white">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Contactar
               </Button>
@@ -146,35 +146,35 @@ const SellerProfile = () => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Stats */}
-            <Card>
+            <Card className="border-gray-200">
               <CardHeader>
                 <h3 className="font-semibold text-gray-900">Estadísticas</h3>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total de ventas:</span>
-                  <span className="font-semibold">{seller.sales}</span>
+                  <span className="font-semibold text-gray-900">{seller.sales}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Planos activos:</span>
-                  <span className="font-semibold">{sellerProducts.length}</span>
+                  <span className="font-semibold text-gray-900">{sellerProducts.length}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Calificación promedio:</span>
-                  <span className="font-semibold">{seller.rating}/5.0</span>
+                  <span className="font-semibold text-gray-900">{seller.rating}/5.0</span>
                 </div>
               </CardContent>
             </Card>
 
             {/* Achievements */}
-            <Card>
+            <Card className="border-gray-200">
               <CardHeader>
                 <h3 className="font-semibold text-gray-900">Logros</h3>
               </CardHeader>
               <CardContent className="space-y-3">
                 {seller.achievements.map((achievement, index) => (
                   <div key={index} className="flex items-center space-x-2">
-                    <Award className="w-4 h-4 text-amber-600" />
+                    <Award className="w-4 h-4 text-gray-600" />
                     <span className="text-sm text-gray-700">{achievement}</span>
                   </div>
                 ))}

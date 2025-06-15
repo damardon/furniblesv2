@@ -23,7 +23,7 @@ const ProductCard = ({ id, title, category, image, seller, rating, downloads, pr
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <Card className="group hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-gray-200 bg-white">
       <CardHeader className="p-0">
         <div className="relative overflow-hidden rounded-t-lg">
           <img 
@@ -32,14 +32,14 @@ const ProductCard = ({ id, title, category, image, seller, rating, downloads, pr
             className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
           />
           {featured && (
-            <Badge className="absolute top-3 left-3 bg-amber-600">
+            <Badge className="absolute top-3 left-3 bg-gray-800 text-white hover:bg-gray-700">
               Destacado
             </Badge>
           )}
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-3 right-3 bg-white/80 hover:bg-white"
+            className="absolute top-3 right-3 bg-white/90 hover:bg-white text-gray-600 hover:text-gray-800"
           >
             <Heart className="w-4 h-4" />
           </Button>
@@ -48,22 +48,22 @@ const ProductCard = ({ id, title, category, image, seller, rating, downloads, pr
       
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-2">
-          <Badge variant="secondary" className="text-xs">
+          <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200">
             {category}
           </Badge>
           <div className="flex items-center space-x-1">
-            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+            <Star className="w-3 h-3 fill-gray-400 text-gray-400" />
             <span className="text-xs text-gray-600">{rating}</span>
           </div>
         </div>
         
-        <h3 className="font-semibold text-gray-900 mb-1 line-clamp-2">
+        <h3 className="font-semibold text-gray-900 mb-1 line-clamp-2 text-sm">
           {title}
         </h3>
         
         <Link 
           to={`/seller/${getSellerSlug(seller)}`}
-          className="text-sm text-amber-600 hover:text-amber-700 mb-2 inline-flex items-center"
+          className="text-sm text-gray-600 hover:text-gray-800 mb-2 inline-flex items-center"
         >
           <User className="w-3 h-3 mr-1" />
           Por {seller}
@@ -74,13 +74,13 @@ const ProductCard = ({ id, title, category, image, seller, rating, downloads, pr
             <Download className="w-3 h-3 text-gray-500" />
             <span className="text-xs text-gray-500">{downloads} descargas</span>
           </div>
-          <span className="font-bold text-lg text-amber-600">${price}</span>
+          <span className="font-bold text-lg text-gray-800">${price}</span>
         </div>
       </CardContent>
       
       <CardFooter className="p-4 pt-0">
         <Link to={`/product/${id}`} className="w-full">
-          <Button className="w-full bg-amber-600 hover:bg-amber-700">
+          <Button className="w-full bg-gray-800 hover:bg-gray-700 text-white">
             Ver Detalles
           </Button>
         </Link>

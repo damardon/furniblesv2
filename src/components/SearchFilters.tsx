@@ -25,12 +25,12 @@ const SearchFilters = () => {
             <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
             <Input 
               placeholder="Buscar planos de muebles..." 
-              className="pl-10"
+              className="pl-10 border-gray-300 focus:border-gray-500"
             />
           </div>
           
           <Select>
-            <SelectTrigger className="w-full lg:w-48">
+            <SelectTrigger className="w-full lg:w-48 border-gray-300">
               <SelectValue placeholder="Categoría" />
             </SelectTrigger>
             <SelectContent>
@@ -44,7 +44,7 @@ const SearchFilters = () => {
           </Select>
 
           <Select>
-            <SelectTrigger className="w-full lg:w-48">
+            <SelectTrigger className="w-full lg:w-48 border-gray-300">
               <User className="w-4 h-4 mr-2" />
               <SelectValue placeholder="Diseñador" />
             </SelectTrigger>
@@ -59,7 +59,7 @@ const SearchFilters = () => {
           </Select>
           
           <Select>
-            <SelectTrigger className="w-full lg:w-48">
+            <SelectTrigger className="w-full lg:w-48 border-gray-300">
               <SelectValue placeholder="Ordenar por" />
             </SelectTrigger>
             <SelectContent>
@@ -70,26 +70,26 @@ const SearchFilters = () => {
             </SelectContent>
           </Select>
           
-          <Button variant="outline" className="lg:w-auto">
+          <Button variant="outline" className="lg:w-auto border-gray-300 text-gray-700 hover:bg-gray-50">
             <SlidersHorizontal className="w-4 h-4 mr-2" />
             Filtros
           </Button>
         </div>
         
         <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
+          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200 bg-gray-100 text-gray-700">
             Gratis
           </Badge>
-          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
+          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200 bg-gray-100 text-gray-700">
             Premium
           </Badge>
-          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
+          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200 bg-gray-100 text-gray-700">
             Nuevos
           </Badge>
-          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
+          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200 bg-gray-100 text-gray-700">
             Populares
           </Badge>
-          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
+          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200 bg-gray-100 text-gray-700">
             Top Diseñadores
           </Badge>
         </div>
