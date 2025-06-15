@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/Navbar";
+import Comments from "@/components/Comments";
 import { useParams, Link } from "react-router-dom";
 import { 
   Download, 
@@ -33,7 +34,8 @@ const ProductDetail = () => {
       name: "Diseños Luna",
       rating: 4.9,
       sales: 1250,
-      avatar: "/placeholder.svg"
+      avatar: "/placeholder.svg",
+      slug: "disenos-luna"
     },
     rating: 4.9,
     reviews: 127,
@@ -75,7 +77,7 @@ const ProductDetail = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
           {/* Product Images */}
           <div className="space-y-4">
             <div className="aspect-square rounded-lg overflow-hidden bg-white border">
@@ -173,7 +175,12 @@ const ProductDetail = () => {
                     className="w-12 h-12 rounded-full bg-gray-200"
                   />
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900">{product.seller.name}</h3>
+                    <Link 
+                      to={`/seller/${product.seller.slug}`}
+                      className="font-semibold text-gray-900 hover:text-amber-600"
+                    >
+                      {product.seller.name}
+                    </Link>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       <span>{product.seller.rating}</span>
@@ -181,9 +188,11 @@ const ProductDetail = () => {
                       <span>{product.seller.sales} ventas</span>
                     </div>
                   </div>
-                  <Button variant="outline">
-                    Ver Perfil
-                  </Button>
+                  <Link to={`/seller/${product.seller.slug}`}>
+                    <Button variant="outline">
+                      Ver Perfil
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -191,7 +200,7 @@ const ProductDetail = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Specifications */}
           <Card>
             <CardContent className="p-6">
@@ -248,6 +257,9 @@ const ProductDetail = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Comments Section */}
+        <Comments productId={product.id || "1"} />
       </div>
     </div>
   );

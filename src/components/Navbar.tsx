@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Home, User, ShoppingCart, Settings } from "lucide-react";
+import { Home, User, ShoppingCart, Settings, MessageCircle } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -76,6 +76,13 @@ const Navbar = ({ userType }: NavbarProps) => {
               </Link>
             </>
           )}
+          
+          <Link to="/help">
+            <Button variant="ghost" size="sm">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Ayuda
+            </Button>
+          </Link>
           
           <LanguageSelector />
         </div>

@@ -2,7 +2,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Download, Star } from "lucide-react";
+import { Heart, Download, Star, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ProductCardProps {
@@ -18,6 +18,10 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ id, title, category, image, seller, rating, downloads, price, featured }: ProductCardProps) => {
+  const getSellerSlug = (sellerName: string) => {
+    return sellerName.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+  };
+
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <CardHeader className="p-0">
@@ -57,7 +61,13 @@ const ProductCard = ({ id, title, category, image, seller, rating, downloads, pr
           {title}
         </h3>
         
-        <p className="text-sm text-gray-600 mb-2">Por {seller}</p>
+        <Link 
+          to={`/seller/${getSellerSlug(seller)}`}
+          className="text-sm text-amber-600 hover:text-amber-700 mb-2 inline-flex items-center"
+        >
+          <User className="w-3 h-3 mr-1" />
+          Por {seller}
+        </Link>
         
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">

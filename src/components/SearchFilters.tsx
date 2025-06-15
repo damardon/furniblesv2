@@ -2,13 +2,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Filter, SlidersHorizontal } from "lucide-react";
+import { Search, Filter, SlidersHorizontal, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const SearchFilters = () => {
   const categories = [
     "Sala de estar", "Dormitorio", "Cocina", "Baño", "Oficina", 
     "Comedor", "Exterior", "Infantil", "Storage"
+  ];
+
+  const designers = [
+    "Diseños Luna", "Nordic Furniture Co.", "Comfort Designs", 
+    "Classic Wood Works", "Office Solutions", "Storage Masters",
+    "Kitchen Craft", "Vintage Vibes"
   ];
 
   return (
@@ -32,6 +38,21 @@ const SearchFilters = () => {
               {categories.map((cat) => (
                 <SelectItem key={cat} value={cat.toLowerCase()}>
                   {cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <Select>
+            <SelectTrigger className="w-full lg:w-48">
+              <User className="w-4 h-4 mr-2" />
+              <SelectValue placeholder="Diseñador" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos los diseñadores</SelectItem>
+              {designers.map((designer) => (
+                <SelectItem key={designer} value={designer.toLowerCase()}>
+                  {designer}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -67,6 +88,9 @@ const SearchFilters = () => {
           </Badge>
           <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
             Populares
+          </Badge>
+          <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
+            Top Diseñadores
           </Badge>
         </div>
       </div>
