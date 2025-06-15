@@ -33,6 +33,63 @@ export type Database = {
         }
         Relationships: []
       }
+      messages: {
+        Row: {
+          chat_id: string
+          content: string
+          id: string
+          receiver_id: string
+          sender_id: string
+          sent_at: string | null
+        }
+        Insert: {
+          chat_id: string
+          content: string
+          id?: string
+          receiver_id: string
+          sender_id: string
+          sent_at?: string | null
+        }
+        Update: {
+          chat_id?: string
+          content?: string
+          id?: string
+          receiver_id?: string
+          sender_id?: string
+          sent_at?: string | null
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string | null
+          id: string
+          read: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string | null
+          id?: string
+          read?: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string | null
+          id?: string
+          read?: boolean | null
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           amount: number
