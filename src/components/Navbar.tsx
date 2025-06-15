@@ -2,12 +2,16 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home, User, ShoppingCart, Settings } from "lucide-react";
+import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface NavbarProps {
   userType?: 'buyer' | 'seller' | 'admin';
 }
 
 const Navbar = ({ userType }: NavbarProps) => {
+  const { t } = useLanguage();
+
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -24,12 +28,12 @@ const Navbar = ({ userType }: NavbarProps) => {
               <Link to="/buyer">
                 <Button variant="ghost" size="sm">
                   <ShoppingCart className="w-4 h-4 mr-2" />
-                  Marketplace
+                  {t('nav.marketplace')}
                 </Button>
               </Link>
               <Button variant="outline" size="sm">
                 <User className="w-4 h-4 mr-2" />
-                Perfil
+                {t('nav.profile')}
               </Button>
             </>
           )}
@@ -39,12 +43,12 @@ const Navbar = ({ userType }: NavbarProps) => {
               <Link to="/seller">
                 <Button variant="ghost" size="sm">
                   <Settings className="w-4 h-4 mr-2" />
-                  Dashboard
+                  {t('nav.dashboard')}
                 </Button>
               </Link>
               <Button variant="outline" size="sm">
                 <User className="w-4 h-4 mr-2" />
-                Perfil
+                {t('nav.profile')}
               </Button>
             </>
           )}
@@ -53,7 +57,7 @@ const Navbar = ({ userType }: NavbarProps) => {
             <Link to="/admin">
               <Button variant="ghost" size="sm">
                 <Settings className="w-4 h-4 mr-2" />
-                Admin Panel
+                {t('nav.adminPanel')}
               </Button>
             </Link>
           )}
@@ -62,16 +66,18 @@ const Navbar = ({ userType }: NavbarProps) => {
             <>
               <Link to="/buyer">
                 <Button variant="ghost" size="sm">
-                  Comprar Planos
+                  {t('nav.buyPlans')}
                 </Button>
               </Link>
               <Link to="/seller">
                 <Button variant="outline" size="sm">
-                  Vender Planos
+                  {t('nav.sellPlans')}
                 </Button>
               </Link>
             </>
           )}
+          
+          <LanguageSelector />
         </div>
       </div>
     </nav>

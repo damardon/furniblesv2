@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Download, 
   Users, 
@@ -17,18 +18,20 @@ import {
 } from "lucide-react";
 
 const Index = () => {
+  const { t } = useLanguage();
+
   const stats = [
-    { icon: Download, label: "Planos Descargados", value: "50,000+" },
-    { icon: Users, label: "Diseñadores Activos", value: "2,500+" },
-    { icon: DollarSign, label: "Ventas Totales", value: "$250,000+" },
-    { icon: Star, label: "Calificación Promedio", value: "4.8/5" },
+    { icon: Download, label: t('home.stats.downloaded'), value: "50,000+" },
+    { icon: Users, label: t('home.stats.designers'), value: "2,500+" },
+    { icon: DollarSign, label: t('home.stats.sales'), value: "$250,000+" },
+    { icon: Star, label: t('home.stats.rating'), value: "4.8/5" },
   ];
 
   const categories = [
-    { icon: Sofa, name: "Sala de estar", count: "1,200+ planos" },
-    { icon: Bed, name: "Dormitorio", count: "800+ planos" },
-    { icon: ChefHat, name: "Cocina", count: "600+ planos" },
-    { icon: Briefcase, name: "Oficina", count: "400+ planos" },
+    { icon: Sofa, name: t('home.categories.livingRoom'), count: "1,200+ planos" },
+    { icon: Bed, name: t('home.categories.bedroom'), count: "800+ planos" },
+    { icon: ChefHat, name: t('home.categories.kitchen'), count: "600+ planos" },
+    { icon: Briefcase, name: t('home.categories.office'), count: "400+ planos" },
   ];
 
   const featuredProducts = [
@@ -66,23 +69,22 @@ const Index = () => {
       <section className="bg-gradient-to-br from-amber-50 to-orange-50 py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            El Marketplace de Planos de Muebles
-            <span className="text-amber-600"> Más Grande del Mundo</span>
+            {t('home.title')}
+            <span className="text-amber-600"> {t('home.titleHighlight')}</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Descubre, compra y vende planos de muebles únicos. Todos los planos a $5. 
-            Conectamos diseñadores talentosos con personas que buscan crear muebles increíbles.
+            {t('home.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/buyer">
               <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-lg px-8">
-                Explorar Planos
+                {t('home.explorePlans')}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
             <Link to="/seller">
               <Button size="lg" variant="outline" className="text-lg px-8">
-                Vender tus Diseños
+                {t('home.sellDesigns')}
               </Button>
             </Link>
           </div>
@@ -110,7 +112,7 @@ const Index = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Explora por Categorías
+            {t('home.categories.title')}
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category, index) => (
@@ -132,10 +134,10 @@ const Index = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Planos Destacados</h2>
+            <h2 className="text-3xl font-bold text-gray-900">{t('home.featured.title')}</h2>
             <Link to="/buyer">
               <Button variant="outline">
-                Ver Todos
+                {t('home.featured.viewAll')}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
@@ -160,7 +162,7 @@ const Index = () => {
                     <h3 className="font-semibold text-gray-900 mb-2">{product.title}</h3>
                     <p className="text-sm text-gray-600 mb-4">Por {product.seller}</p>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-500">{product.downloads} descargas</span>
+                      <span className="text-sm text-gray-500">{product.downloads} {t('home.featured.downloads')}</span>
                       <span className="font-bold text-amber-600">$5.00</span>
                     </div>
                   </div>
@@ -175,20 +177,20 @@ const Index = () => {
       <section className="py-16 bg-amber-600">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
-            ¿Listo para comenzar tu próximo proyecto?
+            {t('home.cta.title')}
           </h2>
           <p className="text-xl text-amber-100 mb-8">
-            Únete a miles de makers que ya están creando muebles increíbles con nuestros planos.
+            {t('home.cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/buyer">
               <Button size="lg" variant="secondary" className="text-lg px-8">
-                Comprar Planos
+                {t('home.cta.buy')}
               </Button>
             </Link>
             <Link to="/seller">
               <Button size="lg" variant="outline" className="text-lg px-8 text-white border-white hover:bg-white hover:text-amber-600">
-                Vender Diseños
+                {t('home.cta.sell')}
               </Button>
             </Link>
           </div>
@@ -207,39 +209,39 @@ const Index = () => {
                 <span className="text-2xl font-bold">Furnibles</span>
               </div>
               <p className="text-gray-400">
-                El marketplace líder en planos de muebles descargables.
+                {t('footer.description')}
               </p>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Marketplace</h3>
+              <h3 className="font-semibold mb-4">{t('footer.marketplace')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Explorar Planos</li>
-                <li>Categorías</li>
-                <li>Vendedores Top</li>
-                <li>Nuevos Diseños</li>
+                <li>{t('footer.explorePlans')}</li>
+                <li>{t('footer.categories')}</li>
+                <li>{t('footer.topSellers')}</li>
+                <li>{t('footer.newDesigns')}</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Vendedores</h3>
+              <h3 className="font-semibold mb-4">{t('footer.sellers')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Comenzar a Vender</li>
-                <li>Guías de Diseño</li>
-                <li>Recursos</li>
-                <li>Soporte</li>
+                <li>{t('footer.startSelling')}</li>
+                <li>{t('footer.designGuides')}</li>
+                <li>{t('footer.resources')}</li>
+                <li>{t('footer.support')}</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Empresa</h3>
+              <h3 className="font-semibold mb-4">{t('footer.company')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Acerca de</li>
-                <li>Blog</li>
-                <li>Términos</li>
-                <li>Privacidad</li>
+                <li>{t('footer.about')}</li>
+                <li>{t('footer.blog')}</li>
+                <li>{t('footer.terms')}</li>
+                <li>{t('footer.privacy')}</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Furnibles. Todos los derechos reservados.</p>
+            <p>{t('footer.copyright')}</p>
           </div>
         </div>
       </footer>

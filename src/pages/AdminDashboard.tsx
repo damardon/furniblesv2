@@ -1,10 +1,10 @@
-
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Users, 
   DollarSign, 
@@ -20,11 +20,13 @@ import {
 } from "lucide-react";
 
 const AdminDashboard = () => {
+  const { t } = useLanguage();
+
   const platformStats = [
-    { icon: Users, label: "Usuarios Totales", value: "12,450", change: "+15%" },
-    { icon: DollarSign, label: "Revenue Total", value: "$85,420", change: "+22%" },
-    { icon: Download, label: "Descargas Totales", value: "156,780", change: "+18%" },
-    { icon: AlertTriangle, label: "Reportes Pendientes", value: "7", change: "-12%" },
+    { icon: Users, label: t('admin.stats.totalUsers'), value: "12,450", change: "+15%" },
+    { icon: DollarSign, label: t('admin.stats.totalRevenue'), value: "$85,420", change: "+22%" },
+    { icon: Download, label: t('admin.stats.totalDownloads'), value: "156,780", change: "+18%" },
+    { icon: AlertTriangle, label: t('admin.stats.pendingReports'), value: "7", change: "-12%" },
   ];
 
   const recentUsers = [
@@ -57,20 +59,20 @@ const AdminDashboard = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Panel de Administración
+              {t('admin.title')}
             </h1>
             <p className="text-gray-600">
-              Gestiona usuarios, ventas y la salud de la plataforma
+              {t('admin.subtitle')}
             </p>
           </div>
           
           <div className="flex space-x-2 mt-4 lg:mt-0">
             <Button variant="outline">
               <Settings className="w-4 h-4 mr-2" />
-              Configuración
+              {t('admin.settings')}
             </Button>
             <Button className="bg-amber-600 hover:bg-amber-700">
-              Generar Reporte
+              {t('admin.generateReport')}
             </Button>
           </div>
         </div>
@@ -98,10 +100,10 @@ const AdminDashboard = () => {
 
         <Tabs defaultValue="users" className="space-y-6">
           <TabsList>
-            <TabsTrigger value="users">Usuarios</TabsTrigger>
-            <TabsTrigger value="sales">Ventas</TabsTrigger>
-            <TabsTrigger value="sellers">Vendedores</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="users">{t('admin.tabs.users')}</TabsTrigger>
+            <TabsTrigger value="sales">{t('admin.tabs.sales')}</TabsTrigger>
+            <TabsTrigger value="sellers">{t('admin.tabs.sellers')}</TabsTrigger>
+            <TabsTrigger value="analytics">{t('admin.tabs.analytics')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="users" className="space-y-6">

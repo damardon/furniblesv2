@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Grid, List, Filter } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BuyerDashboard = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const { t } = useLanguage();
   
   const products = [
     {
@@ -106,10 +108,10 @@ const BuyerDashboard = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Descubre Planos Increíbles
+              {t('buyer.title')}
             </h1>
             <p className="text-gray-600">
-              {products.length} planos disponibles • Todos a $5.00
+              {products.length} {t('buyer.subtitle')}
             </p>
           </div>
           
@@ -134,19 +136,19 @@ const BuyerDashboard = () => {
         {/* Filter Tags */}
         <div className="flex flex-wrap gap-2 mb-6">
           <Badge variant="default" className="bg-amber-600">
-            Todos
+            {t('buyer.filters.all')}
           </Badge>
           <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
-            Destacados
+            {t('buyer.filters.featured')}
           </Badge>
           <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
-            Más Descargados
+            {t('buyer.filters.mostDownloaded')}
           </Badge>
           <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
-            Mejor Valorados
+            {t('buyer.filters.bestRated')}
           </Badge>
           <Badge variant="secondary" className="cursor-pointer hover:bg-gray-200">
-            Nuevos
+            {t('buyer.filters.new')}
           </Badge>
         </div>
 
@@ -164,7 +166,7 @@ const BuyerDashboard = () => {
         {/* Load More */}
         <div className="text-center mt-12">
           <Button variant="outline" size="lg">
-            Cargar Más Planos
+            {t('buyer.loadMore')}
           </Button>
         </div>
       </div>
