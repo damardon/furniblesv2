@@ -1,43 +1,19 @@
 
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 
 export function useNotifications(userId?: string) {
-  const queryClient = useQueryClient();
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const fetchNotifications = async () => {
-    if (!userId) return [];
-    const { data, error } = await supabase
-      .from("notifications")
-      .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false });
-    if (error) throw new Error(error.message);
-    return data;
+  const markAsRead = (notificationId: string) => {
+    setNotifications(prev => 
+      prev.map(n => n.id === notificationId ? { ...n, read: true } : n)
+    );
   };
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["notifications", userId],
-    queryFn: fetchNotifications,
-    enabled: !!userId,
-  });
-
-  const markAsRead = useMutation({
-    mutationFn: async (notificationId: string) => {
-      const { error } = await supabase
-        .from("notifications")
-        .update({ read: true })
-        .eq("id", notificationId);
-      if (error) throw new Error(error.message);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["notifications", userId] });
-    },
-  });
-
   return {
-    notifications: data || [],
+    notifications,
     isLoading,
-    markAsRead: markAsRead.mutate,
+    markAsRead,
   };
 }
