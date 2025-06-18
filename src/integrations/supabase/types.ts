@@ -33,12 +33,93 @@ export type Database = {
         }
         Relationships: []
       }
+      chats: {
+        Row: {
+          buyer_id: string | null
+          created_at: string
+          id: string
+          product_id: string | null
+          seller_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          buyer_id?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          seller_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          buyer_id?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          seller_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chats_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      downloads: {
+        Row: {
+          download_url: string | null
+          downloaded_at: string
+          expires_at: string
+          id: string
+          order_id: string | null
+          product_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          download_url?: string | null
+          downloaded_at?: string
+          expires_at?: string
+          id?: string
+          order_id?: string | null
+          product_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          download_url?: string | null
+          downloaded_at?: string
+          expires_at?: string
+          id?: string
+          order_id?: string | null
+          product_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "downloads_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "downloads_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       messages: {
         Row: {
           chat_id: string
           content: string
           id: string
-          receiver_id: string
+          message_type: string | null
+          read: boolean | null
           sender_id: string
           sent_at: string | null
         }
@@ -46,7 +127,8 @@ export type Database = {
           chat_id: string
           content: string
           id?: string
-          receiver_id: string
+          message_type?: string | null
+          read?: boolean | null
           sender_id: string
           sent_at?: string | null
         }
@@ -54,11 +136,20 @@ export type Database = {
           chat_id?: string
           content?: string
           id?: string
-          receiver_id?: string
+          message_type?: string | null
+          read?: boolean | null
           sender_id?: string
           sent_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "messages_chat_id_fkey"
+            columns: ["chat_id"]
+            isOneToOne: false
+            referencedRelation: "chats"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       notifications: {
         Row: {
@@ -153,9 +244,13 @@ export type Database = {
           category_id: string | null
           created_at: string | null
           description: string | null
+          difficulty_level: string | null
+          dimensions: string | null
           downloads: number | null
           featured: boolean | null
           features: string[] | null
+          file_format: string | null
+          file_size: number | null
           files: string[] | null
           id: string
           image_url: string | null
@@ -173,9 +268,13 @@ export type Database = {
           category_id?: string | null
           created_at?: string | null
           description?: string | null
+          difficulty_level?: string | null
+          dimensions?: string | null
           downloads?: number | null
           featured?: boolean | null
           features?: string[] | null
+          file_format?: string | null
+          file_size?: number | null
           files?: string[] | null
           id?: string
           image_url?: string | null
@@ -193,9 +292,13 @@ export type Database = {
           category_id?: string | null
           created_at?: string | null
           description?: string | null
+          difficulty_level?: string | null
+          dimensions?: string | null
           downloads?: number | null
           featured?: boolean | null
           features?: string[] | null
+          file_format?: string | null
+          file_size?: number | null
           files?: string[] | null
           id?: string
           image_url?: string | null
