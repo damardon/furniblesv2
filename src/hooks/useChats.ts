@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -39,8 +38,8 @@ export function useChats() {
         .select(`
           *,
           product:products(title, image_url),
-          buyer:profiles!chats_buyer_id_fkey(full_name, username),
-          seller:profiles!chats_seller_id_fkey(full_name, username)
+          buyer:profiles!buyer_id(full_name, username),
+          seller:profiles!seller_id(full_name, username)
         `)
         .or(`buyer_id.eq.${user.id},seller_id.eq.${user.id}`)
         .order("updated_at", { ascending: false });
